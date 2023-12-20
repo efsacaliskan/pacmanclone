@@ -89,4 +89,37 @@ public class CollisionManager {
 
         return false;
     }
+
+    public boolean canCollectedCoin(int x, int y, String direction){
+        if (Objects.equals(direction, "right")) {
+            if((x+gamePanel.tileSize) % gamePanel.tileSize == 36 &&
+                    (whatIsThere(x+gamePanel.tileSize, y) == 2 &&
+                            whatIsThere(x+gamePanel.tileSize, y+gamePanel.tileSize-1) == 2)){
+                System.out.println("hey");
+                return true;
+            }
+        }
+        if (Objects.equals(direction, "left")) {
+            if(x % gamePanel.tileSize == 24 &&
+                    (whatIsThere(x, y) == 2 &&
+                            whatIsThere(x, y+gamePanel.tileSize-1) == 2)){
+                return true;
+            }
+        }
+        if (Objects.equals(direction, "up")) {
+            if(y % gamePanel.tileSize == 24 &&
+                    (whatIsThere(x, y-1) == 2 &&
+                            whatIsThere(x+gamePanel.tileSize-1, y-1) == 2)){
+                return true;
+            }
+        }
+        if (Objects.equals(direction, "down")) {
+            if((y + gamePanel.tileSize) % gamePanel.tileSize == 24 &&
+                    (whatIsThere(x, y+gamePanel.tileSize+1) == 2 &&
+                            whatIsThere(x+gamePanel.tileSize-1, y+gamePanel.tileSize+1) == 2)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
