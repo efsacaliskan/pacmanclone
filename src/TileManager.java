@@ -13,12 +13,14 @@ public class TileManager {
     GamePanel gamePanel;
     public Tile[] tile;
     public int[][] mapTileNumber;
+    public int numberOfCoin;
 
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         tile = new Tile[10];
         mapTileNumber = new int[gamePanel.maxScreenCol][gamePanel.maxScreenRow];
         getTileImage();
+        numberOfCoin = 0;
         loadMap("/map/map1.txt");
     }
     public void loadMap(String mapPath){
@@ -35,6 +37,9 @@ public class TileManager {
                 while(col < gamePanel.maxScreenCol){
                     String[] numbers = line.split(" ");
                     int number = Integer.parseInt(numbers[col]);
+                    if(number == 2){
+                        numberOfCoin += 1;
+                    }
                     mapTileNumber[col][row] = number;
                     col++;
                 }
