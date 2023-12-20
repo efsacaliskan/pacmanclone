@@ -19,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public Ghost ghost1 = new Ghost(this, 48, 48, "blue");
     public Ghost ghost2 = new Ghost(this, 672, 480, "green");
+    int maxScore = tileManager.numberOfCoin * 10;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -64,7 +65,10 @@ public class GamePanel extends JPanel implements Runnable{
         pacman.update();
         ghost1.update(pacman.x, pacman.y);
         ghost2.update(pacman.x, pacman.y);
-
+        if(pacman.score == maxScore){
+            System.out.println("WIN");
+            endGame();
+        }
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
