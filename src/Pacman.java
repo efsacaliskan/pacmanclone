@@ -9,6 +9,8 @@ public class Pacman extends Entity {
     KeyHandler keyHandler;
     public int score;
 
+    String requestDirection;
+
     public Pacman(GamePanel gamePanel, KeyHandler keyHandler){
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
@@ -22,6 +24,7 @@ public class Pacman extends Entity {
         speed = 2;
         size = 48;
         direction = "right";
+        requestDirection = "right";
         score = 0;
     }
 
@@ -34,6 +37,32 @@ public class Pacman extends Entity {
     }
 
     public void move(){
+
+        switch (requestDirection){
+            case "up":
+                if(gamePanel.collisionManager.isOkToMove(x, y, requestDirection)){
+                    direction = "up";
+                }
+                break;
+            case "down":
+                if(gamePanel.collisionManager.isOkToMove(x, y, requestDirection)){
+                    direction = "down";
+                }
+                break;
+            case "right":
+                if(gamePanel.collisionManager.isOkToMove(x, y, requestDirection)){
+                    direction = "right";
+                }
+                break;
+            case "left":
+                if(gamePanel.collisionManager.isOkToMove(x, y, requestDirection)){
+                    direction = "left";
+                }
+                break;
+            default:
+                break;
+        }
+
         switch(direction){
             case "up":
                 if(gamePanel.collisionManager.isOkToMove(x, y, direction)){
@@ -61,16 +90,16 @@ public class Pacman extends Entity {
     }
     public void update(){
         if(keyHandler.upPressed){
-            direction = "up";
+            requestDirection = "up";
         }
         else if(keyHandler.downPressed){
-            direction = "down";
+            requestDirection = "down";
         }
         else if(keyHandler.rightPressed){
-            direction = "right";
+            requestDirection = "right";
         }
         else if(keyHandler.leftPressed){
-            direction = "left";
+            requestDirection = "left";
         }
         move();
     }
