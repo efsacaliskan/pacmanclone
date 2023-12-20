@@ -17,6 +17,9 @@ public class GamePanel extends JPanel implements Runnable{
     public TileManager tileManager = new TileManager(this);
     public CollisionManager collisionManager = new CollisionManager(this);
 
+    public Ghost ghost1 = new Ghost(this, 48, 48, "blue");
+    public Ghost ghost2 = new Ghost(this, 672, 480, "green");
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -59,12 +62,16 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void update(){
         pacman.update();
+        ghost1.update(pacman.x, pacman.y);
+        ghost2.update(pacman.x, pacman.y);
 
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         tileManager.draw(g2);
+        ghost1.draw(g2);
+        ghost2.draw(g2);
         pacman.draw(g2);
         g2.dispose();
     }
