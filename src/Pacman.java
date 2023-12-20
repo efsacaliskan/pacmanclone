@@ -107,7 +107,23 @@ public class Pacman extends Entity {
         else if(keyHandler.leftPressed){
             requestDirection = "left";
         }
+
         move();
+
+        if(gamePanel.collisionManager.canCollectedCoin(x, y, direction)){
+            score += 10;
+            int col = x / gamePanel.tileSize;
+            int row = y / gamePanel.tileSize;
+            if(direction.equals("right")){
+                col = (x+48) / gamePanel.tileSize;
+            }else if(direction.equals("down")){
+                row = (y+48) / gamePanel.tileSize;
+            }
+            if(gamePanel.tileManager.mapTileNumber[col][row] == 2){
+                gamePanel.tileManager.mapTileNumber[col][row] = 0;
+                System.out.println("score: " + score);
+            }
+        }
     }
 
     public void draw(Graphics2D g2){
