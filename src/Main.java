@@ -7,5 +7,14 @@ public class Main {
         window.setResizable(false);
         window.setTitle("Pacman Clone");
 
+        GamePanel gamePanel = new GamePanel();
+        window.add(gamePanel);
+
+        window.pack();
+
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
+
+        gamePanel.startGameThread();
     }
 }
