@@ -36,16 +36,24 @@ public class Pacman extends Entity {
     public void move(){
         switch(direction){
             case "up":
-                y -= speed;
+                if(gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y -= speed;
+                }
                 break;
             case "down":
-                y += speed;
+                if(gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y += speed;
+                }
                 break;
             case "right":
-                x += speed;
+                if(gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    x += speed;
+                }
                 break;
             case "left":
-                x -= speed;
+                if(gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    x -= speed;
+                }
                 break;
             default:
                 break;
