@@ -75,4 +75,12 @@ public class GamePanel extends JPanel implements Runnable{
         pacman.draw(g2);
         g2.dispose();
     }
+
+    public void endGame() {
+        System.out.println("Game Over");
+        gameThread = null;
+        JFrame topLevelFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topLevelFrame.dispose();
+        System.exit(0);
+    }
 }

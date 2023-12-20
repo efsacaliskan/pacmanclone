@@ -89,6 +89,12 @@ public class Pacman extends Entity {
         }
     }
     public void update(){
+
+        if(gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost2.x, gamePanel.ghost2.y) ||
+                gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost1.x, gamePanel.ghost1.y)){
+            gamePanel.endGame();
+        }
+
         if(keyHandler.upPressed){
             requestDirection = "up";
         }
