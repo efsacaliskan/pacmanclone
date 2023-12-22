@@ -1,22 +1,20 @@
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Objects;
 
 public class HomePage extends JFrame {
 
-    public HomePage() {
+    public HomePage() throws IOException {
         super("Game Home Page");
         setLayout(new BorderLayout());
 
         // Load the image
-        ImageIcon imageIcon = new ImageIcon("C:\\Users\\cefsa\\Desktop\\sample_game_project\\sample_game_project\\src\\pacman\\main2.jpg");
+        ImageIcon imageIcon = new ImageIcon("src/images/homepage.jpg");
         JLabel imageLabel = new JLabel(imageIcon);
 
 
@@ -84,7 +82,11 @@ public class HomePage extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new HomePage();
+                try {
+                    new HomePage();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
