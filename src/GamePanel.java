@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.IOException;
 import javax.swing.*;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -83,8 +84,13 @@ public class GamePanel extends JPanel implements Runnable{
     public void endGame() {
         System.out.println("Game Over");
         gameThread = null;
+        try {
+            new HomePage();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         JFrame topLevelFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         topLevelFrame.dispose();
-        System.exit(0);
+
     }
 }
