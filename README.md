@@ -1,11 +1,17 @@
 Öncelikle repomuzda base bir proje olacak (main branchinde ilk push)
 Herkes bu repo linkini kullanarak çalışmak istediği directory'de
 ```bash
-git clone <repo linki>
+git clone https://github.com/emreerkus/pacmanclone.git
 ```
 komutunu kullanarak hepimiz aynı base projeden başlayacağız.
 
-Herkesin kendi geliştireceği bir özellik olacağı için herkes kendine yeni bir branch açacak.
+Eğer main'de çalışmak istiyorsanız kodunuzda bir şey değiştirmeden önce main ile güncel olup olmadığınızı görmek için
+```bash
+git pull origin main
+```
+komutunu kullanın. Hepsi bu kadar.
+
+Eğer yeni bir branch'te çalışacaksanız ise
 ```bash
 git checkout -b <branch'inizin ismi>
 ```
