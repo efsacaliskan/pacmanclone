@@ -9,6 +9,8 @@ import java.util.Objects;
 
 public class HomePage extends JFrame {
 
+    private String playerName;
+
     public HomePage() throws IOException {
         super("Game Home Page");
         setLayout(new BorderLayout());
@@ -34,6 +36,10 @@ public class HomePage extends JFrame {
         btnPlay.setBackground(Color.YELLOW);
         btnExit.setBackground(Color.YELLOW);
 
+        //Get username
+
+
+
 
         btnLeaderboard.addActionListener(new ActionListener() {
             @Override
@@ -57,6 +63,14 @@ public class HomePage extends JFrame {
                 gameFrame.setLocationRelativeTo(null);
                 gameFrame.setVisible(true);
                 // Starts the game
+                playerName = JOptionPane.showInputDialog("Please enter your name:", "");
+
+                //If player clicked cancel, then aborts
+                if (playerName == null) {
+                    System.exit(0);
+                }
+
+                gamePanel.setPlayerNameForPacman(playerName);
                 gamePanel.startGameThread();
             }
         });
