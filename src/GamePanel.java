@@ -39,6 +39,13 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread.start();
     }
 
+    public void updateScoreDisplay(int newScore) {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        if (frame != null) {
+            frame.setTitle("Score: " + newScore);
+        }
+    }
+
     @Override
     public void run() {
         double drawInterval = (double) 1000000000 / FPS;
