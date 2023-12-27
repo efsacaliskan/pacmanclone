@@ -135,6 +135,7 @@ public class Pacman extends Entity {
             if(gamePanel.tileManager.mapTileNumber[col][row] == 2){
                 gamePanel.tileManager.mapTileNumber[col][row] = 0;
                 System.out.println("score: " + score);
+                gamePanel.updateScoreDisplay(this.score);
             }
         }
     }
