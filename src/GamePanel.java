@@ -1,10 +1,6 @@
 import java.awt.*;
 import java.io.IOException;
 import javax.swing.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -85,21 +81,9 @@ public class GamePanel extends JPanel implements Runnable{
         g2.dispose();
     }
 
-    public void setPlayerNameForPacman(String name) {
-        pacman.setPlayerName(name);
-    }
-
     public void endGame() {
         System.out.println("Game Over");
         gameThread = null;
-
-        String fileName = "leaderboard.txt";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-            writer.write(pacman.getPlayerName() + ": " + pacman.getPlayerScore() + "\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         try {
             new HomePage();
         } catch (IOException e) {
