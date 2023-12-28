@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
-public class TileManager {
+public class TileManager{
     GamePanel gamePanel;
     public Tile[] tile;
     public int[][] mapTileNumber;

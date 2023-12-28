@@ -1,12 +1,18 @@
+import java.awt.*;
+import java.io.IOException;
+import javax.swing.*;
+
 public class Test{
     // Testing for Pacman clone will be done in this class
 
-
-
-    // As first step, testing the Pacman class functions
-    // Creating pacman
-
+    //GamePanel Class Testing
     GamePanel gp = new GamePanel();
+    Thread testingGameThread;
+    public void startGameThreadTest(){
+        testingGameThread = new Thread(gp);
+        testingGameThread.start();
+
+    }
 
 
     KeyHandler kh = new KeyHandler();
