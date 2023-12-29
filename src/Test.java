@@ -1,18 +1,73 @@
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.IOException;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Objects;
+import javax.imageio.ImageIO;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.awt.image.BufferedImage;
+import java.util.concurrent.ExecutionException;
 
 public class Test{
+    // For sequential purposes, following class will be tested sequentially
+    // HomePage -> LeaderboardPage -> TileManager -> KeyHandler -> Ghost -> Pacman -> GamePanel -> CollisionManager
     // Testing for Pacman clone will be done in this class
 
-    //GamePanel Class Testing
     GamePanel gp = new GamePanel();
+    TileManager tm = new TileManager(gp);
+    int numberOfCoin = 0;
+    public int[][] mapTileNumber;
+
+    // 1) HomePage Class Testing
+    // 2) LeaderboardPage Testing
+    // 3) TileManager Testing
+    public void loadMapTest(String myPathTest){
+        try{
+            InputStream ts = getClass().getResourceAsStream(myPathTest);
+            assert ts != null;
+            BufferedReader br = new BufferedReader(new InputStreamReader(ts));
+
+            int col = 0;
+            int row = 0;
+
+            while(col< gp.maxScreenCol && row < gp.maxScreenRow){
+                String lineTest = br.readLine();
+                while(col< gp.maxScreenCol){
+                    String[] numbers = lineTest.split(" ");
+                    int number = Integer.parseInt(numbers[col]);
+                    if(number == 2){
+                        numberOfCoin += 1;
+                    }
+                    mapTileNumber[col][row] = number;
+                    col++;
+                }
+                if(col == gp.maxScreenCol){
+                    col = 0;
+                    row++;
+                }
+            }
+            br.close();;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    //GamePanel Class Testing
+
     Thread testingGameThread;
     public void startGameThreadTest(){
         testingGameThread = new Thread(gp);
         testingGameThread.start();
 
     }
+
+
 
 
     KeyHandler kh = new KeyHandler();
