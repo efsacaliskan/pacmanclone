@@ -445,6 +445,19 @@ public class Test extends Entity implements KeyListener{
 
     }
 
+    Thread CollisionManagerTest;
+    public void CollisionManagerTest() {
+        GamePanel gamePanel = new GamePanel();
+        CollisionManager collisionManager= new CollisionManager(gamePanel);
+        boolean collisionWithWall = collisionManager.isOkToMove(0, 0, "right");
+        System.out.println("Collision with wall (expected true): " + collisionWithWall);
+        boolean collisionWithGhost = collisionManager.collisionWithGhost(32, 32, 64, 32);
+        System.out.println("Collision with ghost (expected true): " + collisionWithGhost);
+        boolean canCollectCoin = collisionManager.canCollectedCoin(32, 32, "down");
+        System.out.println("Can collect coin (expected true): " + canCollectCoin);
+    }
+
+
 
 
 
