@@ -436,8 +436,7 @@ public class Test extends Entity implements KeyListener{
             System.out.println("Expected width: " + (gamePanel.tileSize * gamePanel.maxScreenCol) + ", Actual width: " + gamePanel.getPreferredSize().width);
             System.out.println("Expected height: " + (gamePanel.tileSize * gamePanel.maxScreenRow) + ", Actual height: " + gamePanel.getPreferredSize().height);
             System.out.println("Background color is black: " + (Color.black.equals(gamePanel.getBackground())));//this simply makes the background color black
-            System.out.println("Panel is focusable: " + gamePanel.isFocusable());//this is a gui library boolean type it returns true or false(isFocudable();)
-        }
+         }
 
     Thread testingGameThread;
     public void startGameThreadTest(){
