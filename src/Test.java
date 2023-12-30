@@ -11,11 +11,13 @@ import java.io.InputStreamReader;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.ExecutionException;
 import java.util.Random;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Test extends Entity{
+public class Test extends Entity implements KeyListener{
     // For sequential purposes, following class will be tested sequentially
     // HomePage -> LeaderboardPage -> TileManager -> KeyHandler -> Ghost -> Pacman -> GamePanel -> CollisionManager
-    // Testing for Pacman clone will be done in this class
+    // Testing for PacmanClone will be done in this class
 
     GamePanel gp = new GamePanel();
     TileManager tm = new TileManager(gp);
@@ -23,8 +25,17 @@ public class Test extends Entity{
     public Tile[] tileTest;
     int numberOfCoin = 0;
     public int[][] mapTileNumber;
+
     String[] directions = {"right", "left", "down", "up"};
     String color;
+
+    public boolean upPressed, downPressed, leftPressed, rightPressed;
+
+    KeyHandler kh;
+    public int scoreTest;
+    String requestDirection;
+    Pacman p = new Pacman(gp,kh);
+
 
     Ghost testGhost = new Ghost(gp,x,y,color);
 
@@ -104,7 +115,48 @@ public class Test extends Entity{
     }
 
     // 4) ---------------------------------------KeyHandler Testing---------------------------------------
+    @Override
+    public void keyTyped(KeyEvent e) {
 
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int codeTest = e.getKeyCode();
+        // Different keyboard component will be tested.
+        if(codeTest == KeyEvent.VK_T){
+            upPressed = true;
+        }
+        else if(codeTest == KeyEvent.VK_G){
+            downPressed = true;
+        }
+        else if(codeTest == KeyEvent.VK_F){
+            leftPressed = true;
+        }
+        else if(codeTest == KeyEvent.VK_H){
+            rightPressed = true;
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int codeTest = e.getKeyCode();
+
+        if(codeTest == KeyEvent.VK_T){
+            upPressed = false;
+        }
+        else if(codeTest == KeyEvent.VK_G){
+            downPressed = false;
+        }
+        else if(codeTest == KeyEvent.VK_F){
+            leftPressed = false;
+        }
+        else if(codeTest == KeyEvent.VK_H){
+            rightPressed = false;
+        }
+
+    }
     // 5) ---------------------------------------Ghost Class Testing---------------------------------------
 
     public void setDefaultPositionTest(int x,int y){
@@ -256,19 +308,127 @@ public class Test extends Entity{
             moveRandomTest();
         }
     }
-    public void draw(Graphics2D g2){
+    public void drawGhost(Graphics2D g2){
         g2.drawImage(ghost_img, x, y, gp.tileSize, gp.tileSize, null);
     }
 
 
     // 6) ---------------------------------------Pacman Class Testing---------------------------------------
 
+    public void setDefaultPositionTest(){
+        //This will be tested with different axes to provide different scenario
+        x = 200;
+        y = 36;
+        speed = 2;
+        size = 36;
+        direction = "left";
+        requestDirection = "left";
+        scoreTest = 0;
+    }
 
+    public void getPlayerImageTest(){
+        try {
+            pacman_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman.png")));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
+    public void movePacman() {
+        // Directions will stay same for every possibility.
+        switch (requestDirection) {
+            case "up":
+                if (gp.collisionManager.isOkToMove(x, y, requestDirection)) {
+                    direction = "up";
+                }
+                break;
+            case "down":
+                if (gp.collisionManager.isOkToMove(x, y, requestDirection)) {
+                    direction = "down";
+                }
+                break;
+            case "right":
+                if (gp.collisionManager.isOkToMove(x, y, requestDirection)) {
+                    direction = "right";
+                }
+                break;
+            case "left":
+                if (gp.collisionManager.isOkToMove(x, y, requestDirection)) {
+                    direction = "left";
+                }
+                break;
+            default:
+                break;
+        }
+        switch(direction){
+            case "up":
+                if(gp.collisionManager.isOkToMove(x, y, direction)){
+                    y -= speed;
+                }
+                break;
+            case "down":
+                if(gp.collisionManager.isOkToMove(x, y, direction)){
+                    y += speed;
+                }
+                break;
+            case "right":
+                if(gp.collisionManager.isOkToMove(x, y, direction)){
+                    x += speed;
+                }
+                break;
+            case "left":
+                if(gp.collisionManager.isOkToMove(x, y, direction)){
+                    x -= speed;
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
+    public void updatePacman(){
 
+        if(gp.collisionManager.collisionWithGhost(x, y, gp.ghost2.x, gp.ghost2.y) ||
+                gp.collisionManager.collisionWithGhost(x, y, gp.ghost1.x, gp.ghost1.y)){
+            gp.endGame();
+        }
 
+        if(kh.upPressed){
+            requestDirection = "up";
+        }
+        else if(kh.downPressed){
+            requestDirection = "down";
+        }
+        else if(kh.rightPressed){
+            requestDirection = "right";
+        }
+        else if(kh.leftPressed){
+            requestDirection = "left";
+        }
 
+        movePacman();
+
+        if(gp.collisionManager.canCollectedCoin(x, y, direction)){
+            scoreTest += 10;
+            int col = x / gp.tileSize;
+            int row = y / gp.tileSize;
+            if(direction.equals("right")){
+                col = (x+36) / gp.tileSize;
+            }else if(direction.equals("down")){
+                row = (y+36) / gp.tileSize;
+            }
+            if(gp.tileManager.mapTileNumber[col][row] == 2){
+                gp.tileManager.mapTileNumber[col][row] = 0;
+                System.out.println("score: " + scoreTest);
+            }
+        }
+    }
+
+    public void drawPacman(Graphics2D g2){
+        BufferedImage image = null;
+
+        g2.drawImage(pacman_img, x, y, gp.tileSize, gp.tileSize, null);
+    }
     //GamePanel Class Testing
 
     Thread testingGameThread;
@@ -281,15 +441,12 @@ public class Test extends Entity{
 
 
 
-    KeyHandler kh = new KeyHandler();
-    Pacman p = new Pacman(gp,kh);
-
     // Unit Testing approach will be applied by hand.
 
 
-    public static void main(String[] args){
-
-    }
+//    public static void main(String[] args){
+//
+//    }
 
 
 
