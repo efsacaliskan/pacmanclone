@@ -18,6 +18,8 @@ public class Test{
 
     GamePanel gp = new GamePanel();
     TileManager tm = new TileManager(gp);
+
+    public Tile[] tileTest;
     int numberOfCoin = 0;
     public int[][] mapTileNumber;
 
@@ -56,6 +58,46 @@ public class Test{
         }
     }
 
+    public void getTileImageTest(){
+        try{
+            tileTest[0] = new Tile();
+            tileTest[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/freeway.png")));
+
+
+            tileTest[1] = new Tile();
+            tileTest[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/obstacle.png")));
+            tileTest[1].collision = true;
+
+            tileTest[2] = new Tile();
+            tileTest[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/coin.png")));
+            tileTest[2].collision = true;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void drawTest(Graphics2D g2){
+        int col = 0;
+        int row = 0;
+        int x = 0;
+        int y = 0;
+
+        while(col < gp.maxScreenCol && row < gp.maxScreenRow){
+            int tileNum = mapTileNumber[col][row];
+            g2.drawImage(tileTest[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            col++;
+            x += gp.tileSize;
+            if(col == gp.maxScreenCol){
+                col = 0;
+                x = 0;
+                row++;
+                y += gp.tileSize;
+            }
+        }
+    }
+
+
+
 
 
     //GamePanel Class Testing
@@ -74,6 +116,11 @@ public class Test{
     Pacman p = new Pacman(gp,kh);
 
     // Unit Testing approach will be applied by hand.
+
+
+    public static void main(String[] args){
+
+    }
 
 
 
