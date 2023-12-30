@@ -442,14 +442,29 @@ public class Test extends Entity implements KeyListener{
 
 
     // Unit Testing approach will be applied by hand.
+    public static void main(String[] args){
+        int x = 200;
+        int y = 40;
+        JFrame frame = new JFrame();
+        int id = KeyEvent.KEY_PRESSED;
+        long when = System.currentTimeMillis();
+        int modifiers = 0;
+        int keyCode = KeyEvent.VK_T;
+        char keyChar = 'T';
+        KeyEvent e = new KeyEvent(frame, id, when, modifiers, keyCode, keyChar);
+//        int keycode = e.getKeyCode();
 
 
-//    public static void main(String[] args){
-//
-//    }
 
-
-
-
+        String color = "blue";
+        GamePanel gp = new GamePanel();
+        TileManager tm = new TileManager(gp);
+        KeyHandler kh = new KeyHandler();
+        Pacman p = new Pacman(gp,kh);
+        Ghost testGhost = new Ghost(gp,x,y,color);
+        tm.getTileImage();
+        kh.keyPressed(e);
+    }
 
 }
+
