@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.ExecutionException;
 
-public class Test{
+public class Test extends Entity{
     // For sequential purposes, following class will be tested sequentially
     // HomePage -> LeaderboardPage -> TileManager -> KeyHandler -> Ghost -> Pacman -> GamePanel -> CollisionManager
     // Testing for Pacman clone will be done in this class
@@ -95,6 +95,9 @@ public class Test{
             }
         }
     }
+
+    // 4)KeyHandler Testing
+
 
 
 
