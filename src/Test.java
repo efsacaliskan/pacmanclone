@@ -430,7 +430,7 @@ public class Test extends Entity implements KeyListener{
         g2.drawImage(pacman_img, x, y, gp.tileSize, gp.tileSize, null);
     }
     //GamePanel Class Testing
-    Tread testGamePanelInitialization;
+    //Tread testGamePanelInitialization;
     public void testGamePanelInitialization() {
             GamePanel gamePanel = new GamePanel();
             System.out.println("Expected width: " + (gamePanel.tileSize * gamePanel.maxScreenCol) + ", Actual width: " + gamePanel.getPreferredSize().width);
@@ -459,6 +459,11 @@ public class Test extends Entity implements KeyListener{
 
 
 
+    // Software Test Report Tests
+
+
+
+
 
 
     // Unit Testing approach will be applied by hand.
@@ -472,10 +477,6 @@ public class Test extends Entity implements KeyListener{
         int keyCode = KeyEvent.VK_T;
         char keyChar = 'T';
         KeyEvent e = new KeyEvent(frame, id, when, modifiers, keyCode, keyChar);
-//        int keycode = e.getKeyCode();
-
-
-
         String color = "blue";
         GamePanel gp = new GamePanel();
         TileManager tm = new TileManager(gp);
