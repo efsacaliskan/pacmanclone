@@ -16,8 +16,7 @@ public class HomePage extends JFrame {
         // Load the image
         ImageIcon imageIcon = new ImageIcon("src/images/homepage.jpg");
         JLabel imageLabel = new JLabel(imageIcon);
-
-
+        
 
         // Add imageLabel to the frame
         add(imageLabel, BorderLayout.CENTER);
