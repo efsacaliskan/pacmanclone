@@ -430,7 +430,7 @@ public class Test extends Entity implements KeyListener{
         g2.drawImage(pacman_img, x, y, gp.tileSize, gp.tileSize, null);
     }
     //GamePanel Class Testing
-    Tread testGamePanelInitialization;
+    Thread testGamePanelInitialization;
     public void testGamePanelInitialization() {
             GamePanel gamePanel = new GamePanel();
             System.out.println("Expected width: " + (gamePanel.tileSize * gamePanel.maxScreenCol) + ", Actual width: " + gamePanel.getPreferredSize().width);
