@@ -9,6 +9,7 @@ public class Pacman extends Entity {
     KeyHandler keyHandler;
     public int score;
 
+    public String playerName;
     String requestDirection;
 
     public Pacman(GamePanel gamePanel, KeyHandler keyHandler){
@@ -34,6 +35,18 @@ public class Pacman extends Entity {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void setPlayerName(String name) {
+        this.playerName = name;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public int getPlayerScore(){
+        return score;
     }
 
     public void move(){
@@ -122,6 +135,7 @@ public class Pacman extends Entity {
             if(gamePanel.tileManager.mapTileNumber[col][row] == 2){
                 gamePanel.tileManager.mapTileNumber[col][row] = 0;
                 System.out.println("score: " + score);
+                gamePanel.updateScoreDisplay(this.score);
             }
         }
     }
