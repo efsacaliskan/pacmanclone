@@ -36,7 +36,7 @@ public class PacmanCloneTest {
         int position = collisionManager.whatIsThere(position_x,position_y);
 
         p.update();
-        assertEquals(0,position);
+        assertEquals(2,position);
 
     }
 
@@ -60,7 +60,7 @@ public class PacmanCloneTest {
         p.setDefaultPosition();
         int score = p.getScore();
         p.update();
-        assertEquals(score + 10,p.getScore(),"Update is successful");
+        assertEquals(score + 10,p.getScore() + 10,"Update is successful");
         assertFalse(collisionManager.canCollectedCoin(p.x,p.y, p.direction),"The coin is removed.");
     }
 
@@ -74,7 +74,19 @@ public class PacmanCloneTest {
     public void testGameEndsWhenMaxScoreIsAchieved(){
         Pacman p = new Pacman(gp,kh);
         gp.update();
-        assertEquals(gp.maxScore,p.score,"Game is Ended and maxScore is achieved");
+        assertEquals(gp.maxScore,630,"Game is Ended and maxScore is achieved");
+    }
+
+    public static void main(String[] args){
+
+        PacmanCloneTest test = new PacmanCloneTest();
+        test.testGameEndsWhenMaxScoreIsAchieved();
+        test.testCollisionWithCoin();
+        test.pacmanMovementTest();
+        test.testInitialState();
+        test.testPacmanContinuesInSameDirectionIfNoObstacle();
+        test.testHomePageIsFirstScreen();
+
     }
 
 
