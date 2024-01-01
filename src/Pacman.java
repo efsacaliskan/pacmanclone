@@ -131,4 +131,16 @@ public class Pacman extends Entity {
 
         g2.drawImage(pacman_img, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
     }
+
+    public int getScore(){
+        return  score;
+    }
+
+    public int getEntityX(){
+        return x;
+    }
+
+    public int getEntityY(){
+        return y;
+    }
 }
