@@ -9,6 +9,7 @@ public class PacmanCloneTest {
     KeyHandler kh = new KeyHandler();
     GamePanel gp = new GamePanel();
     // Test ID : T-STP-PMC-001
+    @Test
     public void testHomePageIsFirstScreen(){
         try{
             HomePage homePage = new HomePage();
@@ -20,12 +21,14 @@ public class PacmanCloneTest {
     }
 
     // Test ID : T-STP-PMC-002
+    @Test
     public void testInitialState(){
         Pacman p = new Pacman(gp,kh);
         assertEquals(0,p.getScore(),"Initial Score is 0");
     }
 
     // Test ID: T-STP-PMC-003
+    @Test
     public void pacmanMovementTest(){
         Pacman p = new Pacman(gp,kh);
         CollisionManager collisionManager = new CollisionManager(gp);
@@ -41,6 +44,7 @@ public class PacmanCloneTest {
     }
 
     // Test ID : T-STP-PMC-004
+    @Test
     public void testPacmanContinuesInSameDirectionIfNoObstacle(){
         CollisionManager collisionManager = new CollisionManager(gp);
         Pacman p = new Pacman(gp,kh);
@@ -54,6 +58,7 @@ public class PacmanCloneTest {
     }
 
     // Test ID : T-STP-PMC-005
+    @Test
     public void testCollisionWithCoin(){
         Pacman p = new Pacman(gp,kh);
         CollisionManager collisionManager = new CollisionManager(gp);
@@ -71,13 +76,71 @@ public class PacmanCloneTest {
 
 
     // Test ID : T-STP-PMC-007
+    @Test
     public void testGameEndsWhenMaxScoreIsAchieved(){
         Pacman p = new Pacman(gp,kh);
         gp.update();
         assertEquals(gp.maxScore,630,"Game is Ended and maxScore is achieved");
     }
 
-    public static void main(String[] args){
+    //Test ID : T-STP-PMC-008
+    @Test
+     public void testPacmanCollidesWithGhostAndGameEnds() {
+        GamePanel gamePanel = new GamePanel();
+        Pacman pacman = gamePanel.pacman;  
+        Ghost ghost1 = gamePanel.ghost1; 
+        pacman.x = ghost1.x; 
+        pacman.y = ghost1.y;
+        if (gamePanel.collisionManager.collisionWithGhost(pacman.x, pacman.y, ghost1.x, ghost1.y)) {
+            gamePanel.endGame();
+        }
+        assertNull(gamePanel.gameThread, "Game ended due to collision with ghost.");
+    }
+    //Test ID : T-STP-PMC-009
+    //cherry olmadığı için bu kısım yok
+    @Test
+    public void testPacmanCollidesWithGhostWithCherry() {
+        GamePanel gamePanel = new GamePanel();  
+        //gamePanel.pacman.cherry(); buraya eklenicek
+        gamePanel.pacman.x = gamePanel.ghost1.x; 
+        gamePanel.pacman.y = gamePanel.ghost1.y;
+        //gamePanel.collisionManager.collisionWithGhost();
+
+        // Assert: Ghost should be removed and then respawned
+        //assertFalse(gamePanel.ghosts.contains(gamePanel.ghost1), "değiştirilebilir");
+        //assertEquals(gamePanel.ghost1.x, gamePanel.ghost1.initialX, "respawn of the ghost 1");
+        //assertEquals(gamePanel.ghost1.y, gamePanel.ghost1.initialY, "respawn of the gost 2");
+    }
+    //Test ID : T-STP-PMC-010
+    @Test
+    public void testPacmanStopsAtObstacle() {
+        GamePanel gamePanel = new GamePanel();
+        gamePanel.startGameThread(); 
+        gamePanel.pacman.x = gamePanel.tileSize; 
+        gamePanel.pacman.y = 0;
+        gamePanel.pacman.direction = "right";
+        gamePanel.pacman.move();
+
+        assertEquals(gamePanel.tileSize, gamePanel.pacman.x, "Pacman should have stopped at the obstacle.");
+        assertEquals(0, gamePanel.pacman.y, "Pacman's Y coordinate should remain unchanged.");
+        
+        gamePanel.gameThread.interrupt();
+    }
+
+    //Test ID : T-STP-PMC-011
+    @Test
+    public void testGameEnds() {
+    
+        GamePanel gamePanel = new GamePanel();
+     
+        gamePanel.endGame();
+
+        assertNull(gamePanel.gameThread, "Game ends.");
+        /*java.lang.NullPointerException: Cannot invoke "javax.swing.JFrame.dispose()" because "topLevelFrame" is null
+ at GamePanel.endGame(GamePanel.java:116)
+ at PacmanCloneTest.testGameEnds(PacmanCloneTest.java:142)*/
+    }
+ public static void main(String[] args){
 
         PacmanCloneTest test = new PacmanCloneTest();
         test.testGameEndsWhenMaxScoreIsAchieved();
@@ -86,7 +149,10 @@ public class PacmanCloneTest {
         test.testInitialState();
         test.testPacmanContinuesInSameDirectionIfNoObstacle();
         test.testHomePageIsFirstScreen();
-
+        test.testPacmanCollidesWithGhostAndGameEnds();
+        test.testPacmanCollidesWithGhostWithCherry();
+        test.testPacmanStopsAtObstacle();
+        test.testGameEnds();
     }
 
 
