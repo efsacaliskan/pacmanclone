@@ -128,6 +128,7 @@ public class PacmanCloneTest {
     }
 
     //Test ID : T-STP-PMC-011
+    //burada run time error alıyor
     @Test
     public void testGameEnds() {
     
