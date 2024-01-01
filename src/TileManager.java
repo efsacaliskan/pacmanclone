@@ -21,7 +21,7 @@ public class TileManager{
         mapTileNumber = new int[gamePanel.maxScreenCol][gamePanel.maxScreenRow];
         getTileImage();
         numberOfCoin = 0;
-        loadMap("/map/map1.txt");
+        loadMap("/map/map2.txt");
     }
     public void loadMap(String mapPath){
         try{

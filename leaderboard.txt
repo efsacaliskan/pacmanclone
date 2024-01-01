@@ -1,3 +1,12 @@
 den: 90
 asdasds: 90
 aa: 270
+emre: 90
+fkpflpf: 80
+kivy: 30
+a: 0
+a: 0
+a: 0
+a: 0
+a: 0
+a: 370

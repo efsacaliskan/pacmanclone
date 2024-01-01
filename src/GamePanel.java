@@ -11,8 +11,8 @@ public class GamePanel extends JPanel implements Runnable{
     final int originalTileSize = 16; // 16x16 tile
     final int scale = 3;
     public final int tileSize = originalTileSize * scale; // 48x48 tile
-    public final int maxScreenCol = 16;
-    public final int maxScreenRow = 12;
+    public final int maxScreenCol = 32;
+    public final int maxScreenRow = 15;
     final int screenWidth = tileSize * maxScreenCol;
     final int screenHeight = tileSize * maxScreenRow;
     int FPS = 60;
@@ -22,8 +22,10 @@ public class GamePanel extends JPanel implements Runnable{
     public TileManager tileManager = new TileManager(this);
     public CollisionManager collisionManager = new CollisionManager(this);
 
-    public Ghost ghost1 = new Ghost(this, 48, 48, "blue");
-    public Ghost ghost2 = new Ghost(this, 672, 480, "green");
+    public Ghost ghost1 = new Ghost(this, "blue");
+    public Ghost ghost2 = new Ghost(this, "green");
+    public Ghost ghost3 = new Ghost(this, "red");
+    public Ghost ghost4 = new Ghost(this, "yellow");
     int maxScore = tileManager.numberOfCoin * 10;
 
     public GamePanel() {
@@ -77,6 +79,8 @@ public class GamePanel extends JPanel implements Runnable{
         pacman.update();
         ghost1.update(pacman.x, pacman.y);
         ghost2.update(pacman.x, pacman.y);
+        ghost3.update(pacman.x, pacman.y);
+        ghost4.update(pacman.x, pacman.y);
         if(pacman.score == maxScore){
             System.out.println("WIN");
             endGame();
@@ -88,6 +92,8 @@ public class GamePanel extends JPanel implements Runnable{
         tileManager.draw(g2);
         ghost1.draw(g2);
         ghost2.draw(g2);
+        ghost3.draw(g2);
+        ghost4.draw(g2);
         pacman.draw(g2);
         g2.dispose();
     }

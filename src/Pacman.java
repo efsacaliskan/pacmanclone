@@ -20,7 +20,7 @@ public class Pacman extends Entity {
     }
 
     public void setDefaultPosition(){
-        x = 240;
+        x = 224;
         y = 48;
         speed = 2;
         size = 48;

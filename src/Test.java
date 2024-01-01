@@ -37,7 +37,8 @@ public class Test extends Entity implements KeyListener{
     Pacman p = new Pacman(gp,kh);
 
 
-    Ghost testGhost = new Ghost(gp,x,y,color);
+    //Ghost testGhost = new Ghost(gp,x,y,color);
+    Ghost testGhost = new Ghost(gp, color);
 
     // 1) ---------------------------------------HomePage Class Testing---------------------------------------
     // 2) ---------------------------------------LeaderboardPage Testing---------------------------------------
@@ -481,7 +482,8 @@ public class Test extends Entity implements KeyListener{
         TileManager tm = new TileManager(gp);
         KeyHandler kh = new KeyHandler();
         Pacman p = new Pacman(gp,kh);
-        Ghost testGhost = new Ghost(gp,x,y,color);
+        //Ghost testGhost = new Ghost(gp,x,y,color);
+        Ghost testGhost = new Ghost(gp, color);
         tm.getTileImage();
         kh.keyPressed(e);
     }

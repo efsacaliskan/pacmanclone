@@ -9,7 +9,7 @@ public class Ghost extends Entity {
     GamePanel gamePanel;
     String[] directions = {"right", "left", "down", "up"};
     String color;
-    public Ghost(GamePanel gamePanel, int x, int y, String color){
+    public Ghost(GamePanel gamePanel, String color){
         this.gamePanel = gamePanel;
         this.color = color;
         setDefaultPosition(x, y);
@@ -17,8 +17,8 @@ public class Ghost extends Entity {
     }
 
     public void setDefaultPosition(int x, int y){
-        this.x = x;
-        this.y = y;
+        this.x = 720;
+        this.y = 336;
         speed = 1;
         Random random = new Random();
         int randomIndex = random.nextInt(directions.length);
@@ -31,6 +31,10 @@ public class Ghost extends Entity {
                 ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/blue_ghost.png")));
             }else if(color.equals("green")) {
                 ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/green_ghost.png")));
+            }else if(color.equals("red")) {
+                ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/red_ghost.png")));
+            }else if(color.equals("yellow")) {
+                ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/yellow_ghost.png")));
             }
         }catch (IOException e){
             e.printStackTrace();
@@ -159,7 +163,7 @@ public class Ghost extends Entity {
 
         double distance = Math.sqrt(Math.pow((x - player_x), 2) + Math.pow((y - player_y), 2));
 
-        if(distance < 200){
+        if(distance < 50){
             followPlayer(player_x, player_y);
         }else{
             moveRandom();
