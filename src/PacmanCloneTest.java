@@ -55,7 +55,27 @@ public class PacmanCloneTest {
 
     // Test ID : T-STP-PMC-005
     public void testCollisionWithCoin(){
-
+        Pacman p = new Pacman(gp,kh);
+        CollisionManager collisionManager = new CollisionManager(gp);
+        p.setDefaultPosition();
+        int score = p.getScore();
+        p.update();
+        assertEquals(score + 10,p.getScore(),"Update is successful");
+        assertFalse(collisionManager.canCollectedCoin(p.x,p.y, p.direction),"The coin is removed.");
     }
+
+    // Test ID : T-STP-PMC-006
+
+
+
+
+
+    // Test ID : T-STP-PMC-007
+    public void testGameEndsWhenMaxScoreIsAchieved(){
+        Pacman p = new Pacman(gp,kh);
+        gp.update();
+        assertEquals(gp.maxScore,p.score,"Game is Ended and maxScore is achieved");
+    }
+
 
 }
