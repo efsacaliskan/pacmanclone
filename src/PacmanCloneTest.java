@@ -72,10 +72,19 @@ public class PacmanCloneTest {
     }
 
     // Test ID : T-STP-PMC-006
-
-
-
-
+      @Test
+    public void testPacmanTeleportsToOppositeSide() {
+        GamePanel gamePanel = new GamePanel();
+        Pacman pacman = gamePanel.pacman;
+        pacman.x = gamePanel.screenWidth - pacman.size;
+        pacman.requestDirection = "right";
+        pacman.move();
+        assertEquals(1492, pacman.getEntityX(), "Pacman should teleport to the left side of the map.");
+        pacman.x = 0;
+        pacman.requestDirection = "left";
+        pacman.move();
+        assertEquals(4, pacman.getEntityX(), "Pacman should teleport to the right side of the map.");
+    }
 
     // Test ID : T-STP-PMC-007
     @Test
