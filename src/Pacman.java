@@ -118,18 +118,22 @@ public class Pacman extends Entity {
             gamePanel.ghost1.x = 720;
             gamePanel.ghost1.y = 336;
             gamePanel.ghost1.is_eatable = false;
+            gamePanel.tileManager.startDoorTimer();
         }else if(gamePanel.ghost2.is_eatable && gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost2.x, gamePanel.ghost2.y)){
             gamePanel.ghost2.x = 720;
             gamePanel.ghost2.y = 336;
             gamePanel.ghost2.is_eatable = false;
+            gamePanel.tileManager.startDoorTimer();
         }else if(gamePanel.ghost3.is_eatable && gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost3.x, gamePanel.ghost3.y)){
             gamePanel.ghost3.x = 720;
             gamePanel.ghost3.y = 336;
             gamePanel.ghost3.is_eatable = false;
+            gamePanel.tileManager.startDoorTimer();
         }else if(gamePanel.ghost4.is_eatable && gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost4.x, gamePanel.ghost4.y)){
             gamePanel.ghost4.x = 720;
             gamePanel.ghost4.y = 336;
             gamePanel.ghost4.is_eatable = false;
+            gamePanel.tileManager.startDoorTimer();
         }else if(gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost2.x, gamePanel.ghost2.y) ||
                 gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost1.x, gamePanel.ghost1.y)||
                 gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost3.x, gamePanel.ghost3.y)||

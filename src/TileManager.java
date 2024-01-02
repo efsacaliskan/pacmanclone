@@ -1,6 +1,9 @@
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +18,8 @@ public class TileManager{
     public int[][] mapTileNumber;
     public int numberOfCoin;
 
+    private Timer doorTimer;
+
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         tile = new Tile[10];
@@ -22,6 +27,17 @@ public class TileManager{
         getTileImage();
         numberOfCoin = 0;
         loadMap("/map/map2.txt");
+        doorTimer = new Timer(3000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mapTileNumber[15][6] = 4;
+            }
+        });
+    }
+
+    public void startDoorTimer() {
+        mapTileNumber[15][6] = 0;
+        doorTimer.restart();
     }
     public void loadMap(String mapPath){
         try{
@@ -55,20 +71,29 @@ public class TileManager{
     }
     public void getTileImage(){
         try{
+            // free way
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/freeway.png")));
 
+            // obstacles
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/obstacle.png")));
             tile[1].collision = true;
 
+            // coin
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/coin.png")));
             tile[2].collision = true;
 
+            // big coin
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/big_coin.png")));
             tile[3].collision = true;
+
+            // door
+            tile[4] = new Tile();
+            tile[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/door.png")));
+            tile[4].collision = true;
 
         }catch (IOException e){
             e.printStackTrace();

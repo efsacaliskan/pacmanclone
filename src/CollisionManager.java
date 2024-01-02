@@ -17,7 +17,9 @@ public class CollisionManager {
         if (Objects.equals(direction, "right")) {
             if((x+gamePanel.tileSize) % gamePanel.tileSize == 0 &&
                     (whatIsThere(x+gamePanel.tileSize+1, y) == 1 ||
-                            whatIsThere(x+gamePanel.tileSize+1, y+gamePanel.tileSize-1) == 1)){
+                            whatIsThere(x+gamePanel.tileSize+1, y+gamePanel.tileSize-1) == 1 ||
+                    whatIsThere(x+gamePanel.tileSize+1, y) == 4 ||
+                    whatIsThere(x+gamePanel.tileSize+1, y+gamePanel.tileSize-1) == 4)){
                 return false;
             }
         }
@@ -25,7 +27,9 @@ public class CollisionManager {
         if (Objects.equals(direction, "left")) {
             if(x % gamePanel.tileSize == 0 &&
                     (whatIsThere(x-1, y) == 1 ||
-                            whatIsThere(x-1, y+gamePanel.tileSize-1) == 1)){
+                    whatIsThere(x-1, y+gamePanel.tileSize-1) == 1 ||
+                    whatIsThere(x-1, y) == 4 ||
+                    whatIsThere(x-1, y+gamePanel.tileSize-1) == 4)){
                 return false;
             }
         }
@@ -33,7 +37,9 @@ public class CollisionManager {
         if (Objects.equals(direction, "up")) {
             if(y % gamePanel.tileSize == 0 &&
                     (whatIsThere(x, y-1) == 1 ||
-                            whatIsThere(x+gamePanel.tileSize-1, y-1) == 1)){
+                            whatIsThere(x+gamePanel.tileSize-1, y-1) == 1 ||
+                            whatIsThere(x, y-1) == 4 ||
+                            whatIsThere(x+gamePanel.tileSize-1, y-1) == 4)){
                 return false;
             }
         }
@@ -41,7 +47,9 @@ public class CollisionManager {
         if (Objects.equals(direction, "down")) {
             if((y + gamePanel.tileSize) % gamePanel.tileSize == 0 &&
                     (whatIsThere(x, y+gamePanel.tileSize+1) == 1 ||
-                            whatIsThere(x+gamePanel.tileSize-1, y+gamePanel.tileSize+1) == 1)){
+                            whatIsThere(x+gamePanel.tileSize-1, y+gamePanel.tileSize+1) == 1 ||
+                            whatIsThere(x, y+gamePanel.tileSize+1) == 4 ||
+                            whatIsThere(x+gamePanel.tileSize-1, y+gamePanel.tileSize+1) == 4)){
                 return false;
             }
         }

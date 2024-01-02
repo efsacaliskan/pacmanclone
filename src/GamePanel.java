@@ -34,6 +34,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.addKeyListener(keyHandler);
+        tileManager.startDoorTimer();
     }
 
     public void startGameThread(){
