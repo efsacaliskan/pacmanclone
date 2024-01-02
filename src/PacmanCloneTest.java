@@ -146,7 +146,7 @@ public class PacmanCloneTest {
         test.testPacmanContinuesInSameDirectionIfNoObstacle();
         test.testHomePageIsFirstScreen();
         test.testPacmanCollidesWithGhostAndGameEnds();
-        test.testPacmanCollidesWithGhostWithCherry();
+        test.testPacmanCollidesWithGhostWithBigItem();
         test.testPacmanStopsAtObstacle();
         test.testGameEnds();
     }
