@@ -31,6 +31,9 @@ public class GamePanel extends JPanel implements Runnable{
     int pacmanSpeed;
     int ghost1Speed, ghost2Speed, ghost3Speed, ghost4Speed;
 
+    PauseDialog pauseDialog;
+
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -40,7 +43,11 @@ public class GamePanel extends JPanel implements Runnable{
         tileManager.startDoorTimer();
         this.setFocusable(true);
         this.requestFocusInWindow();
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        pauseDialog = new PauseDialog(frame);
     }
+
+
 
     public void togglePauseGame() {
         if (isPaused) {
@@ -56,6 +63,11 @@ public class GamePanel extends JPanel implements Runnable{
             ghost2.setSpeed(0);
             ghost3.setSpeed(0);
             ghost4.setSpeed(0);
+            // show dialog
+            if (pauseDialog != null) {
+                SwingUtilities.invokeLater(() -> pauseDialog.setVisible(true));
+            }
+
         } else {
             // Resume the game
             pacman.setSpeed(pacmanSpeed);
@@ -63,7 +75,12 @@ public class GamePanel extends JPanel implements Runnable{
             ghost2.setSpeed(ghost2Speed);
             ghost3.setSpeed(ghost3Speed);
             ghost4.setSpeed(ghost4Speed);
+
+            pauseDialog.setVisible(false); //  hide the dialog
+
+
         }
+
     }
 
 
@@ -127,6 +144,7 @@ public class GamePanel extends JPanel implements Runnable{
         ghost4.draw(g2);
         pacman.draw(g2);
         g2.dispose();
+
     }
 
     public void setPlayerNameForPacman(String name) {

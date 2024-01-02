@@ -71,6 +71,7 @@ public class HomePage extends JFrame {
 
                 gamePanel.setPlayerNameForPacman(playerName);
                 gamePanel.startGameThread();
+
             }
         });
 

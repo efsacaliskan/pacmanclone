@@ -20,27 +20,24 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
 
-        if(code == KeyEvent.VK_W){
+        if (code == KeyEvent.VK_W) {
             upPressed = true;
-        }
-        else if(code == KeyEvent.VK_S){
+        } else if (code == KeyEvent.VK_S) {
             downPressed = true;
-        }
-        else if(code == KeyEvent.VK_A){
+        } else if (code == KeyEvent.VK_A) {
             leftPressed = true;
-        }
-        else if(code == KeyEvent.VK_D){
+        } else if (code == KeyEvent.VK_D) {
             rightPressed = true;
-        } else if(code == KeyEvent.VK_SPACE) {
+        } else if (code == KeyEvent.VK_SPACE) {
             // pause the game
             gamePanel.isPaused = !gamePanel.isPaused;
             gamePanel.togglePauseGame();
 
-
-        } else if(code ==KeyEvent.VK_ESCAPE) {
+        }else if (code == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         }
     }
+
 
     @Override
     public void keyReleased(KeyEvent e) {
