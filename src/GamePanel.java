@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void drawPauseMessage(Graphics2D g2) {
         if (isPaused) {
             g2.setColor(Color.YELLOW);
-            g2.setFont(new Font("Consolas", Font.BOLD, 24));
+            g2.setFont(new Font("Consolas", Font.BOLD, 26));
             String pauseMessage = "Game Paused";
             int messageWidth = g2.getFontMetrics().stringWidth(pauseMessage);
             int x = (getWidth() - messageWidth) / 2;
