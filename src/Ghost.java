@@ -143,7 +143,6 @@ public class Ghost extends Entity {
             return false;
         }
     }
-
     public void moveRandom(){
 
         getGhostImage();
@@ -241,8 +240,6 @@ public class Ghost extends Entity {
         }
 
         moveRandom();
-
-
         /*double distance = Math.sqrt(Math.pow((x - player_x), 2) + Math.pow((y - player_y), 2));
 
         if(distance < 120){
