@@ -27,6 +27,9 @@ public class GamePanel extends JPanel implements Runnable{
     public Ghost ghost3 = new Ghost(this, "brown");
     public Ghost ghost4 = new Ghost(this, "yellow");
     int maxScore = tileManager.numberOfCoin * 10;
+    boolean isPaused = false;
+    int pacmanSpeed;
+    int ghost1Speed, ghost2Speed, ghost3Speed, ghost4Speed;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -35,7 +38,34 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         this.addKeyListener(keyHandler);
         tileManager.startDoorTimer();
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }
+
+    public void togglePauseGame() {
+        if (isPaused) {
+            // Pause the game
+            pacmanSpeed = pacman.getSpeed();
+            ghost1Speed = ghost1.getSpeed();
+            ghost2Speed = ghost2.getSpeed();
+            ghost3Speed = ghost3.getSpeed();
+            ghost4Speed = ghost4.getSpeed();
+
+            pacman.setSpeed(0);
+            ghost1.setSpeed(0);
+            ghost2.setSpeed(0);
+            ghost3.setSpeed(0);
+            ghost4.setSpeed(0);
+        } else {
+            // Resume the game
+            pacman.setSpeed(pacmanSpeed);
+            ghost1.setSpeed(ghost1Speed);
+            ghost2.setSpeed(ghost2Speed);
+            ghost3.setSpeed(ghost3Speed);
+            ghost4.setSpeed(ghost4Speed);
+        }
+    }
+
 
     public void startGameThread(){
         gameThread = new Thread(this);

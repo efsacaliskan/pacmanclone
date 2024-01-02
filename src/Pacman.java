@@ -9,6 +9,7 @@ public class Pacman extends Entity {
     GamePanel gamePanel;
     KeyHandler keyHandler;
     public int score;
+    private int speed;
 
     public String playerName;
     String requestDirection;
@@ -204,5 +205,13 @@ public class Pacman extends Entity {
 
     public int getEntityY(){
         return y;
+    }
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int newSpeed) {
+        this.speed = newSpeed;
+
     }
 }

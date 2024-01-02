@@ -9,6 +9,8 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Ghost extends Entity {
+
+    private int speed;
     GamePanel gamePanel;
     String[] directions = {"right", "left", "down", "up"};
     String color;
@@ -215,6 +217,14 @@ public class Ghost extends Entity {
         }else{
             moveRandom();
         }*/
+    }
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int newSpeed) {
+        this.speed = newSpeed;
+
     }
     public void draw(Graphics2D g2){
         g2.drawImage(ghost_img, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
