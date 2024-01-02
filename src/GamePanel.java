@@ -28,11 +28,6 @@ public class GamePanel extends JPanel implements Runnable{
     public Ghost ghost4 = new Ghost(this, "yellow");
     int maxScore = tileManager.numberOfCoin * 10 + tileManager.numberOfBigCoin * 100;
     boolean isPaused = false;
-    int pacmanSpeed;
-    int ghost1Speed, ghost2Speed, ghost3Speed, ghost4Speed;
-
-    PauseDialog pauseDialog;
-
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -43,44 +38,18 @@ public class GamePanel extends JPanel implements Runnable{
         tileManager.startDoorTimer();
         this.setFocusable(true);
         this.requestFocusInWindow();
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        pauseDialog = new PauseDialog(frame);
     }
 
-
-
-    public void togglePauseGame() {
+    public void drawPauseMessage(Graphics2D g2) {
         if (isPaused) {
-            // Pause the game
-            pacmanSpeed = pacman.getSpeed();
-            ghost1Speed = ghost1.getSpeed();
-            ghost2Speed = ghost2.getSpeed();
-            ghost3Speed = ghost3.getSpeed();
-            ghost4Speed = ghost4.getSpeed();
-
-            pacman.setSpeed(0);
-            ghost1.setSpeed(0);
-            ghost2.setSpeed(0);
-            ghost3.setSpeed(0);
-            ghost4.setSpeed(0);
-            // show dialog
-            if (pauseDialog != null) {
-                SwingUtilities.invokeLater(() -> pauseDialog.setVisible(true));
-            }
-
-        } else {
-            // Resume the game
-            pacman.setSpeed(pacmanSpeed);
-            ghost1.setSpeed(ghost1Speed);
-            ghost2.setSpeed(ghost2Speed);
-            ghost3.setSpeed(ghost3Speed);
-            ghost4.setSpeed(ghost4Speed);
-
-            pauseDialog.setVisible(false); //  hide the dialog
-
-
+            g2.setColor(Color.YELLOW);
+            g2.setFont(new Font("Consolas", Font.BOLD, 24));
+            String pauseMessage = "Game Paused";
+            int messageWidth = g2.getFontMetrics().stringWidth(pauseMessage);
+            int x = (getWidth() - messageWidth) / 2;
+            int y = getHeight() / 2;
+            g2.drawString(pauseMessage, x, y);
         }
-
     }
 
 
@@ -143,6 +112,14 @@ public class GamePanel extends JPanel implements Runnable{
         ghost3.draw(g2);
         ghost4.draw(g2);
         pacman.draw(g2);
+        if(isPaused){
+            pacman.setSpeed(0);
+            ghost1.setSpeed(0);
+            ghost2.setSpeed(0);
+            ghost3.setSpeed(0);
+            ghost4.setSpeed(0);
+            drawPauseMessage(g2);
+        }
         g2.dispose();
 
     }

@@ -29,9 +29,11 @@ public class KeyHandler implements KeyListener {
         } else if (code == KeyEvent.VK_D) {
             rightPressed = true;
         } else if (code == KeyEvent.VK_SPACE) {
-            // pause the game
-            gamePanel.isPaused = !gamePanel.isPaused;
-            gamePanel.togglePauseGame();
+            if(gamePanel.isPaused){
+                gamePanel.isPaused = false;
+            }else{
+                gamePanel.isPaused = true;
+            }
 
         }else if (code == KeyEvent.VK_ESCAPE) {
             System.exit(0);

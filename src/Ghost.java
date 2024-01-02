@@ -232,6 +232,10 @@ public class Ghost extends Entity {
 
     public void update(int player_x, int player_y){
 
+        if(!gamePanel.isPaused){
+            speed = 2;
+        }
+
         if(x == 720 && y == 336){
             gamePanel.tileManager.startDoorTimer();
         }

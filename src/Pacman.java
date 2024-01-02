@@ -124,6 +124,10 @@ public class Pacman extends Entity {
     }
     public void update(){
 
+        if(!gamePanel.isPaused){
+            speed = 4;
+        }
+
         // if ghost is eatable then pacman can eat the ghost that pacman collided one
         if(gamePanel.ghost1.is_eatable && gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost1.x, gamePanel.ghost1.y)){
             gamePanel.ghost1.x = 720;
