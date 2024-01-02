@@ -16,7 +16,7 @@ public class HomePage extends JFrame {
         setLayout(new BorderLayout());
 
         // Load the image
-        ImageIcon imageIcon = new ImageIcon("src/images/homepage.jpg");
+        ImageIcon imageIcon = new ImageIcon("src/images/home.jpg");
         JLabel imageLabel = new JLabel(imageIcon);
         
 
@@ -89,7 +89,7 @@ public class HomePage extends JFrame {
         // Add buttonPanel to the frame
         add(buttonPanel, BorderLayout.SOUTH);
 
-        setSize(700, 450); // Adjust the size as needed
+        setSize(760, 430); // Adjust the size as needed
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
