@@ -18,10 +18,12 @@ public class HomePage extends JFrame {
         // Load the image
         ImageIcon imageIcon = new ImageIcon("src/images/home.jpg");
         JLabel imageLabel = new JLabel(imageIcon);
-        
+
+
         // Add imageLabel to the frame
         add(imageLabel, BorderLayout.CENTER);
-        
+
+
         // Panel for buttons
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton btnLeaderboard = new JButton("Leaderboard");
@@ -32,6 +34,10 @@ public class HomePage extends JFrame {
         btnLeaderboard.setBackground(Color.YELLOW);
         btnPlay.setBackground(Color.YELLOW);
         btnExit.setBackground(Color.YELLOW);
+
+        //Get username
+
+
 
 
         btnLeaderboard.addActionListener(new ActionListener() {
@@ -62,6 +68,7 @@ public class HomePage extends JFrame {
                 if (playerName == null) {
                     System.exit(0);
                 }
+
                 gamePanel.setPlayerNameForPacman(playerName);
                 gamePanel.startGameThread();
 
@@ -82,7 +89,7 @@ public class HomePage extends JFrame {
         // Add buttonPanel to the frame
         add(buttonPanel, BorderLayout.SOUTH);
 
-        setSize(770, 430); // Adjust the size as needed
+        setSize(700, 450); // Adjust the size as needed
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }

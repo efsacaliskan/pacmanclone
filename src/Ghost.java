@@ -168,7 +168,7 @@ public class Ghost extends Entity {
                 y -= speed;
             }
         }else{
-            if(direction.equals("left") && x-48 < 48){
+            if(direction.equals("left") && x == 48 && y == 336){
                 String[] temp_directions = {"down", "up", "right"};
                 random = new Random();
                 randomIndex = random.nextInt(temp_directions.length);
@@ -179,7 +179,7 @@ public class Ghost extends Entity {
                 }else if(direction.equals("up") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
                     y -= speed;
                 }
-            }else if(direction.equals("right") && x+48 > 1440){
+            }else if(direction.equals("right") && x == 1440 && y == 336){
                 String[] temp_directions = {"down", "up", "left"};
                 random = new Random();
                 randomIndex = random.nextInt(temp_directions.length);
