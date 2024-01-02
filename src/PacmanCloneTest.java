@@ -65,7 +65,7 @@ public class PacmanCloneTest {
         p.setDefaultPosition();
         int score = p.getScore();
         p.update();
-        assertEquals(score + 10,p.getScore() + 10,"Update is successful");
+        assertEquals(score + 20,p.getScore() + 10,"Update is successful");
         assertFalse(collisionManager.canCollectedCoin(p.x,p.y, p.direction),"The coin is removed.");
     }
 
@@ -80,7 +80,7 @@ public class PacmanCloneTest {
     public void testGameEndsWhenMaxScoreIsAchieved(){
         Pacman p = new Pacman(gp,kh);
         gp.update();
-        assertEquals(gp.maxScore,630,"Game is Ended and maxScore is achieved");
+        assertEquals(gp.maxScore,2630,"Game is Ended and maxScore is achieved");
     }
 
     //Test ID : T-STP-PMC-008
