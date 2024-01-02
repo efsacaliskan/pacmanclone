@@ -14,7 +14,7 @@ import java.util.Random;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Test extends Entity implements KeyListener{
+/*public class Test extends Entity implements KeyListener{
     // For sequential purposes, following class will be tested sequentially
     // HomePage -> LeaderboardPage -> TileManager -> KeyHandler -> Ghost -> Pacman -> GamePanel -> CollisionManager
     // Testing for PacmanClone will be done in this class
@@ -329,7 +329,8 @@ public class Test extends Entity implements KeyListener{
 
     public void getPlayerImageTest(){
         try {
-            pacman_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman.png")));
+            //pacman_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman.png")));
+            pacman_right = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_right.png")));
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -428,7 +429,7 @@ public class Test extends Entity implements KeyListener{
     public void drawPacman(Graphics2D g2){
         BufferedImage image = null;
 
-        g2.drawImage(pacman_img, x, y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(pacman_right, x, y, gp.tileSize, gp.tileSize, null);
     }
     //GamePanel Class Testing
     Thread testGamePanelInitialization;
@@ -488,5 +489,5 @@ public class Test extends Entity implements KeyListener{
         kh.keyPressed(e);
     }
 
-}
+}*/
 

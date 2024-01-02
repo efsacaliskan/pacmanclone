@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -11,6 +12,8 @@ public class Pacman extends Entity {
 
     public String playerName;
     String requestDirection;
+
+    BufferedImage pacman_img;
 
     public Pacman(GamePanel gamePanel, KeyHandler keyHandler){
         this.gamePanel = gamePanel;
@@ -31,7 +34,20 @@ public class Pacman extends Entity {
 
     public void getPlayerImage(){
         try {
-            pacman_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman.png")));
+            /*if(Objects.equals(direction, "right")){
+                pacman_right = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_right.png")));
+            }else if(Objects.equals(direction, "left")){
+                pacman_left = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_left.png")));
+            }else if(Objects.equals(direction, "up")){
+                pacman_up = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_up.png")));
+            }else if(Objects.equals(direction, "down")){
+                pacman_down = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_down.png")));
+            }*/
+            pacman_right = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_right.png")));
+            pacman_left = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_left.png")));
+            pacman_up = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_up.png")));
+            pacman_down = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_down.png")));
+
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -104,7 +120,9 @@ public class Pacman extends Entity {
     public void update(){
 
         if(gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost2.x, gamePanel.ghost2.y) ||
-                gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost1.x, gamePanel.ghost1.y)){
+                gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost1.x, gamePanel.ghost1.y)||
+                gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost3.x, gamePanel.ghost3.y)||
+                gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost4.x, gamePanel.ghost4.y)){
             gamePanel.endGame();
         }
 
@@ -122,6 +140,7 @@ public class Pacman extends Entity {
         }
 
         move();
+        getPlayerImage();
 
         if(gamePanel.collisionManager.canCollectedCoin(x, y, direction)){
             score += 10;
@@ -141,9 +160,19 @@ public class Pacman extends Entity {
     }
 
     public void draw(Graphics2D g2){
-        BufferedImage image = null;
+        if(direction.equals("right")){
+            g2.drawImage(pacman_right, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        }
+        if(direction.equals("left")){
+            g2.drawImage(pacman_left, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        }
+        if(direction.equals("up")){
+            g2.drawImage(pacman_up, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        }
+        if(direction.equals("down")){
+            g2.drawImage(pacman_down, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        }
 
-        g2.drawImage(pacman_img, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
     }
 
     public int getScore(){

@@ -19,7 +19,7 @@ public class Ghost extends Entity {
     public void setDefaultPosition(int x, int y){
         this.x = 720;
         this.y = 336;
-        speed = 1;
+        speed = 2;
         Random random = new Random();
         int randomIndex = random.nextInt(directions.length);
         direction = directions[randomIndex];
@@ -28,31 +28,51 @@ public class Ghost extends Entity {
     public void getGhostImage() {
         try{
             if(color.equals("blue")){
-                ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/blue_ghost.png")));
+                if(direction.equals("right")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/blue_ghost_right.png")));
+                }else if(direction.equals("left")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/blue_ghost_left.png")));
+                }else if(direction.equals("down")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/blue_ghost_down.png")));
+                }else if(direction.equals("up")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/blue_ghost_up.png")));
+                }
             }else if(color.equals("green")) {
-                ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/green_ghost.png")));
-            }else if(color.equals("red")) {
-                ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/red_ghost.png")));
+                if(direction.equals("right")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/green_ghost_right.png")));
+                }else if(direction.equals("left")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/green_ghost_left.png")));
+                }else if(direction.equals("down")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/green_ghost_down.png")));
+                }else if(direction.equals("up")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/green_ghost_up.png")));
+                }
+
             }else if(color.equals("yellow")) {
-                ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/yellow_ghost.png")));
+                if(direction.equals("right")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/yellow_ghost_right.png")));
+                }else if(direction.equals("left")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/yellow_ghost_left.png")));
+                }else if(direction.equals("down")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/yellow_ghost_down.png")));
+                }else if(direction.equals("up")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/yellow_ghost_up.png")));
+                }
+            }else if(color.equals("brown")) {
+                if(direction.equals("right")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/brown_ghost_right.png")));
+                }else if(direction.equals("left")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/brown_ghost_left.png")));
+                }else if(direction.equals("down")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/brown_ghost_down.png")));
+                }else if(direction.equals("up")){
+                    ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/brown_ghost_up.png")));
+                }
             }
         }catch (IOException e){
             e.printStackTrace();
         }
     }
-
-    public void getTriggeredGhostImage() {
-        try{
-            if(color.equals("blue")){
-                ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/blue_ghost.png")));
-            }else if(color.equals("green")) {
-                ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/green_ghost.png")));
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
     public boolean atCross(){
 
         int count = 0;
@@ -141,9 +161,7 @@ public class Ghost extends Entity {
 
     public void followPlayer(int player_x, int player_y){
 
-        getTriggeredGhostImage();
-
-        if (x < player_x && gamePanel.collisionManager.isOkToMove(x, y, "right")) {
+        if (((y == player_y) || (x == player_x)) && x < player_x && gamePanel.collisionManager.isOkToMove(x, y, "right")) {
             x += speed;
             direction = "right";
         }else if (x > player_x && gamePanel.collisionManager.isOkToMove(x, y, "left")) {
@@ -151,7 +169,7 @@ public class Ghost extends Entity {
             direction = "left";
         }
 
-        if (y < player_y && gamePanel.collisionManager.isOkToMove(x, y, "down")) {
+        if (((y == player_y) || (x == player_x)) && y < player_y && gamePanel.collisionManager.isOkToMove(x, y, "down")) {
             y += speed;
             direction = "down";
         }else if (y > player_y && gamePanel.collisionManager.isOkToMove(x, y, "up")) {
@@ -161,13 +179,15 @@ public class Ghost extends Entity {
     }
     public void update(int player_x, int player_y){
 
-        double distance = Math.sqrt(Math.pow((x - player_x), 2) + Math.pow((y - player_y), 2));
+        moveRandom();
 
-        if(distance < 50){
+        /*double distance = Math.sqrt(Math.pow((x - player_x), 2) + Math.pow((y - player_y), 2));
+
+        if(distance < 120){
             followPlayer(player_x, player_y);
         }else{
             moveRandom();
-        }
+        }*/
     }
     public void draw(Graphics2D g2){
         g2.drawImage(ghost_img, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
