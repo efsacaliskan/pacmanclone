@@ -34,7 +34,6 @@ public class KeyHandler implements KeyListener {
             }else{
                 gamePanel.isPaused = true;
             }
-
         }else if (code == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         }
