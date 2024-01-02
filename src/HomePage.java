@@ -35,10 +35,6 @@ public class HomePage extends JFrame {
         btnPlay.setBackground(Color.YELLOW);
         btnExit.setBackground(Color.YELLOW);
 
-        //Get username
-
-
-
 
         btnLeaderboard.addActionListener(new ActionListener() {
             @Override
