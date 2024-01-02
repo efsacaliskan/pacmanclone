@@ -14,30 +14,27 @@ import java.util.Random;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-/*public class Test extends Entity implements KeyListener{
+public class Test extends Entity implements KeyListener{
     // For sequential purposes, following class will be tested sequentially
     // HomePage -> LeaderboardPage -> TileManager -> KeyHandler -> Ghost -> Pacman -> GamePanel -> CollisionManager
     // Testing for PacmanClone will be done in this class
 
     GamePanel gp = new GamePanel();
     TileManager tm = new TileManager(gp);
-
     public Tile[] tileTest;
     int numberOfCoin = 0;
     public int[][] mapTileNumber;
-
     String[] directions = {"right", "left", "down", "up"};
     String color;
-
     public boolean upPressed, downPressed, leftPressed, rightPressed;
-
     KeyHandler kh;
     public int scoreTest;
     String requestDirection;
     Pacman p = new Pacman(gp,kh);
+    BufferedImage pacman_img;
 
 
-    //Ghost testGhost = new Ghost(gp,x,y,color);
+
     Ghost testGhost = new Ghost(gp, color);
 
     // 1) ---------------------------------------HomePage Class Testing---------------------------------------
@@ -330,7 +327,7 @@ import java.awt.event.KeyListener;
     public void getPlayerImageTest(){
         try {
             //pacman_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman.png")));
-            pacman_right = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_right.png")));
+            pacman_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_right.png")));
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -429,7 +426,8 @@ import java.awt.event.KeyListener;
     public void drawPacman(Graphics2D g2){
         BufferedImage image = null;
 
-        g2.drawImage(pacman_right, x, y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(pacman_img, x, y, gp.tileSize, gp.tileSize, null);
+
     }
     //GamePanel Class Testing
     Thread testGamePanelInitialization;
@@ -489,5 +487,5 @@ import java.awt.event.KeyListener;
         kh.keyPressed(e);
     }
 
-}*/
+}
 
