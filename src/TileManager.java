@@ -27,7 +27,7 @@ public class TileManager{
         getTileImage();
         numberOfCoin = 0;
         loadMap("/map/map2.txt");
-        doorTimer = new Timer(3000, new ActionListener() {
+        doorTimer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mapTileNumber[15][6] = 4;
