@@ -101,6 +101,12 @@ public class Ghost extends Entity {
         boolean up = false;
         boolean down = false;
 
+        if(gamePanel.collisionManager.isOkToMove(x, y, "left") && (y == 336)){
+            return false;
+        }else if(gamePanel.collisionManager.isOkToMove(x, y, "right") && (y == 336)){
+            return false;
+        }
+
         if (gamePanel.collisionManager.isOkToMove(x, y, "right")) {
             right = true;
             count++;

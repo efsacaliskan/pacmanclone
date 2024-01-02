@@ -103,13 +103,11 @@ public class CollisionManager {
             if((x+gamePanel.tileSize) % gamePanel.tileSize == 36 &&
                     (whatIsThere(x+gamePanel.tileSize, y) == 2 &&
                             whatIsThere(x+gamePanel.tileSize, y+gamePanel.tileSize-1) == 2)){
-                System.out.println("hey");
                 return true;
             }
             if((x+gamePanel.tileSize) % gamePanel.tileSize == 36 &&
                     (whatIsThere(x+gamePanel.tileSize, y) == 3 &&
                             whatIsThere(x+gamePanel.tileSize, y+gamePanel.tileSize-1) == 3)){
-                System.out.println("hey");
                 return true;
             }
         }

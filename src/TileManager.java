@@ -23,7 +23,7 @@ public class TileManager{
     public TileManager(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         tile = new Tile[10];
-        mapTileNumber = new int[gamePanel.maxScreenCol][gamePanel.maxScreenRow];
+        mapTileNumber = new int[gamePanel.maxScreenCol+1][gamePanel.maxScreenRow+1];
         getTileImage();
         numberOfCoin = 0;
         loadMap("/map/map2.txt");

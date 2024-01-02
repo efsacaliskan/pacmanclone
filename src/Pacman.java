@@ -25,7 +25,7 @@ public class Pacman extends Entity {
     public void setDefaultPosition(){
         x = 224;
         y = 48;
-        speed = 2;
+        speed = 4;
         size = 48;
         direction = "right";
         requestDirection = "right";
@@ -61,6 +61,15 @@ public class Pacman extends Entity {
     }
 
     public void move(){
+
+        System.out.println("x: " + x);
+        System.out.println("y: " + y);
+
+        if(x < 0){
+            x = 1488;
+        }else if(x > 1488){
+            x = 0;
+        }
 
         switch (requestDirection){
             case "up":
@@ -168,12 +177,10 @@ public class Pacman extends Entity {
             }
             if(gamePanel.tileManager.mapTileNumber[col][row] == 2){
                 gamePanel.tileManager.mapTileNumber[col][row] = 0;
-                System.out.println("score: " + score);
                 gamePanel.updateScoreDisplay(this.score);
             }
             if(gamePanel.tileManager.mapTileNumber[col][row] == 3){
                 gamePanel.tileManager.mapTileNumber[col][row] = 0;
-                System.out.println("score: " + score);
                 gamePanel.updateScoreDisplay(this.score);
                 gamePanel.ghost1.startEatableTimer();
                 gamePanel.ghost2.startEatableTimer();
