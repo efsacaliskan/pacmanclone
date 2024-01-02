@@ -146,11 +146,11 @@ public class PacmanCloneTest {
         test.testPacmanContinuesInSameDirectionIfNoObstacle();
         test.testHomePageIsFirstScreen();
         test.testPacmanCollidesWithGhostAndGameEnds();
-<<<<<<< HEAD
+
        // test.testPacmanCollidesWithGhostWithCherry();
-=======
+
         test.testPacmanCollidesWithGhostWithBigItem();
->>>>>>> 88f0afb175abca02a9ca55ec0a9cc77c4e4e1fb5
+
         test.testPacmanStopsAtObstacle();
         test.testGameEnds();
     }
