@@ -20,18 +20,18 @@ public class LeaderboardPage extends JFrame {
         super("Leaderboard");
         setLayout(new BorderLayout());
 
-        // Tablo modeli
+        // Table model
         String[] columnNames = {"Rank", "Player", "Score"};
         model = new DefaultTableModel(columnNames, 0);
         JTable table = new JTable(model);
         loadScores(); // Skorları yükle
 
-        // Tabloya ekle
+        // Add table
         JScrollPane scrollPane = new JScrollPane(table);
         table.setFillsViewportHeight(true);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Buton paneli
+        // Button panel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         addButtons(buttonPanel);
 
@@ -54,7 +54,7 @@ public class LeaderboardPage extends JFrame {
             e.printStackTrace();
         }
 
-        // Skorları büyükten küçüğe sırala
+        // Sort scores from largest to smallest
         Collections.sort(scores, new Comparator<String[]>() {
             @Override
             public int compare(String[] o1, String[] o2) {
@@ -64,7 +64,7 @@ public class LeaderboardPage extends JFrame {
             }
         });
 
-        // Sıralı skorları modele ekle
+        // Add scores to the table model
         for (int i = 0; i < scores.size(); i++) {
             String rank = Integer.toString(i + 1);
             String[] scoreData = scores.get(i);
@@ -73,7 +73,7 @@ public class LeaderboardPage extends JFrame {
     }
 
     private void addButtons(JPanel buttonPanel) {
-        // Home butonu
+        // Home button
         JButton btnHome = createButton("Home", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,7 +87,7 @@ public class LeaderboardPage extends JFrame {
         });
         buttonPanel.add(btnHome);
 
-        // Çıkış butonu
+        // Exit button
         JButton btnExit = createButton("Exit", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
