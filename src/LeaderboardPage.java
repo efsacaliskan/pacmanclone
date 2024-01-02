@@ -41,7 +41,6 @@ public class LeaderboardPage extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
     }
-
     private void loadScores() {
         List<String[]> scores = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
