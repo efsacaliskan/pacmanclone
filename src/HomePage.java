@@ -82,7 +82,7 @@ public class HomePage extends JFrame {
         // Add buttonPanel to the frame
         add(buttonPanel, BorderLayout.SOUTH);
 
-        setSize(760, 430); // Adjust the size as needed
+        setSize(770, 430); // Adjust the size as needed
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
