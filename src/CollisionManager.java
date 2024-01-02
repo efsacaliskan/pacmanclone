@@ -12,6 +12,8 @@ public class CollisionManager {
 
         return gamePanel.tileManager.mapTileNumber[col][row];
     }
+
+    // It checks whether the requested place is available.
     public boolean isOkToMove(int x, int y, String direction){
 
         if (Objects.equals(direction, "right")) {
@@ -56,6 +58,7 @@ public class CollisionManager {
         return true;
     }
 
+    // It checks whether the pacman collided with ghost or not
     public boolean collisionWithGhost(int player_x, int player_y, int ghost_x, int ghost_y){
 
         String[] rel_pos = {"", ""};
@@ -98,6 +101,7 @@ public class CollisionManager {
         return false;
     }
 
+    // It checks whether the pacman collided with coin or not.
     public boolean canCollectedCoin(int x, int y, String direction){
         if (Objects.equals(direction, "right")) {
             if((x+gamePanel.tileSize) % gamePanel.tileSize == 36 &&

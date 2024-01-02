@@ -103,11 +103,11 @@ public class Ghost extends Entity {
         boolean up = false;
         boolean down = false;
 
-        if(gamePanel.collisionManager.isOkToMove(x, y, "left") && (y == 336)){
+        /*if(gamePanel.collisionManager.isOkToMove(x, y, "left") && (y == 336)){
             return false;
         }else if(gamePanel.collisionManager.isOkToMove(x, y, "right") && (y == 336)){
             return false;
-        }
+        }*/
 
         if (gamePanel.collisionManager.isOkToMove(x, y, "right")) {
             right = true;
@@ -169,20 +169,44 @@ public class Ghost extends Entity {
                 y -= speed;
             }
         }else{
-            if(!gamePanel.collisionManager.isOkToMove(x, y, requestDirection)){
-                System.out.println(requestDirection);
-                randomIndex = random.nextInt(directions.length);
-                requestDirection = directions[randomIndex];
-            }
-            direction = requestDirection;
-            if(direction.equals("right") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
-                x += speed;
-            }else if(direction.equals("left") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
-                x -= speed;
-            }else if(direction.equals("down") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
-                y += speed;
-            }else if(direction.equals("up") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
-                y -= speed;
+            if(direction.equals("left") && x-48 < 48){
+                String[] temp_directions = {"down", "up", "right"};
+                random = new Random();
+                randomIndex = random.nextInt(temp_directions.length);
+                requestDirection = temp_directions[randomIndex];
+                direction = requestDirection;
+                if(direction.equals("down") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y += speed;
+                }else if(direction.equals("up") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y -= speed;
+                }
+            }else if(direction.equals("right") && x+48 > 1440){
+                String[] temp_directions = {"down", "up", "left"};
+                random = new Random();
+                randomIndex = random.nextInt(temp_directions.length);
+                requestDirection = temp_directions[randomIndex];
+                direction = requestDirection;
+                if(direction.equals("down") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y += speed;
+                }else if(direction.equals("up") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y -= speed;
+                }
+            }else{
+                if(!gamePanel.collisionManager.isOkToMove(x, y, requestDirection)){
+                    System.out.println(requestDirection);
+                    randomIndex = random.nextInt(directions.length);
+                    requestDirection = directions[randomIndex];
+                }
+                direction = requestDirection;
+                if(direction.equals("right") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    x += speed;
+                }else if(direction.equals("left") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    x -= speed;
+                }else if(direction.equals("down") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y += speed;
+                }else if(direction.equals("up") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y -= speed;
+                }
             }
         }
     }

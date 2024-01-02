@@ -63,15 +63,14 @@ public class Pacman extends Entity {
 
     public void move(){
 
-        System.out.println("x: " + x);
-        System.out.println("y: " + y);
-
+        // move from most left to most right or from most right to most left
         if(x < 0){
             x = 1488;
         }else if(x > 1488){
             x = 0;
         }
 
+        // It changes the request direction if the requested place is available.
         switch (requestDirection){
             case "up":
                 if(gamePanel.collisionManager.isOkToMove(x, y, requestDirection)){
@@ -97,6 +96,7 @@ public class Pacman extends Entity {
                 break;
         }
 
+        // pacman moves according to its direction if next place is available.
         switch(direction){
             case "up":
                 if(gamePanel.collisionManager.isOkToMove(x, y, direction)){
@@ -124,6 +124,7 @@ public class Pacman extends Entity {
     }
     public void update(){
 
+        // if ghost is eatable then pacman can eat the ghost that pacman collided one
         if(gamePanel.ghost1.is_eatable && gamePanel.collisionManager.collisionWithGhost(x, y, gamePanel.ghost1.x, gamePanel.ghost1.y)){
             gamePanel.ghost1.x = 720;
             gamePanel.ghost1.y = 336;
@@ -151,6 +152,7 @@ public class Pacman extends Entity {
             gamePanel.endGame();
         }
 
+        // requested direction changes immediately after user presses a key
         if(keyHandler.upPressed){
             requestDirection = "up";
         }
@@ -164,11 +166,14 @@ public class Pacman extends Entity {
             requestDirection = "left";
         }
 
+        // It calls move function
         move();
+
+        // It calls this function to get updated appearance of pacman.
         getPlayerImage();
 
+        // it checks coin collision with pacman
         if(gamePanel.collisionManager.canCollectedCoin(x, y, direction)){
-            score += 10;
             int col = x / gamePanel.tileSize;
             int row = y / gamePanel.tileSize;
             if(direction.equals("right")){
@@ -177,10 +182,13 @@ public class Pacman extends Entity {
                 row = (y+48) / gamePanel.tileSize;
             }
             if(gamePanel.tileManager.mapTileNumber[col][row] == 2){
+                score += 10;
                 gamePanel.tileManager.mapTileNumber[col][row] = 0;
                 gamePanel.updateScoreDisplay(this.score);
             }
+            // It checks for the big coin.
             if(gamePanel.tileManager.mapTileNumber[col][row] == 3){
+                score += 100;
                 gamePanel.tileManager.mapTileNumber[col][row] = 0;
                 gamePanel.updateScoreDisplay(this.score);
                 gamePanel.ghost1.startEatableTimer();

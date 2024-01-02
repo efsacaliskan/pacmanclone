@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable{
     public Ghost ghost2 = new Ghost(this, "green");
     public Ghost ghost3 = new Ghost(this, "brown");
     public Ghost ghost4 = new Ghost(this, "yellow");
-    int maxScore = tileManager.numberOfCoin * 10;
+    int maxScore = tileManager.numberOfCoin * 10 + tileManager.numberOfBigCoin * 100;
     boolean isPaused = false;
     int pacmanSpeed;
     int ghost1Speed, ghost2Speed, ghost3Speed, ghost4Speed;

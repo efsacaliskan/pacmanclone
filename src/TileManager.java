@@ -14,9 +14,11 @@ import java.util.concurrent.ExecutionException;
 
 public class TileManager{
     GamePanel gamePanel;
+    // tile types
     public Tile[] tile;
     public int[][] mapTileNumber;
     public int numberOfCoin;
+    public int numberOfBigCoin;
 
     private Timer doorTimer;
 
@@ -55,6 +57,8 @@ public class TileManager{
                     int number = Integer.parseInt(numbers[col]);
                     if(number == 2){
                         numberOfCoin += 1;
+                    }else if(number == 3){
+                        numberOfBigCoin += 1;
                     }
                     mapTileNumber[col][row] = number;
                     col++;
