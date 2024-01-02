@@ -1,6 +1,9 @@
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
@@ -9,11 +12,26 @@ public class Ghost extends Entity {
     GamePanel gamePanel;
     String[] directions = {"right", "left", "down", "up"};
     String color;
+
+    Boolean is_eatable = false;
+    private Timer eatableTimer;
     public Ghost(GamePanel gamePanel, String color){
         this.gamePanel = gamePanel;
         this.color = color;
         setDefaultPosition(x, y);
         getGhostImage();
+        is_eatable = false;
+        eatableTimer = new Timer(5000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                is_eatable = false;
+            }
+        });
+    }
+
+    public void startEatableTimer() {
+        is_eatable = true;
+        eatableTimer.restart();
     }
 
     public void setDefaultPosition(int x, int y){
@@ -27,7 +45,7 @@ public class Ghost extends Entity {
 
     public void getGhostImage() {
         try{
-            if(color.equals("blue")){
+            if(!is_eatable && color.equals("blue")){
                 if(direction.equals("right")){
                     ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/blue_ghost_right.png")));
                 }else if(direction.equals("left")){
@@ -37,7 +55,7 @@ public class Ghost extends Entity {
                 }else if(direction.equals("up")){
                     ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/blue_ghost_up.png")));
                 }
-            }else if(color.equals("green")) {
+            }else if(!is_eatable && color.equals("green")) {
                 if(direction.equals("right")){
                     ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/green_ghost_right.png")));
                 }else if(direction.equals("left")){
@@ -48,7 +66,7 @@ public class Ghost extends Entity {
                     ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/green_ghost_up.png")));
                 }
 
-            }else if(color.equals("yellow")) {
+            }else if(!is_eatable && color.equals("yellow")) {
                 if(direction.equals("right")){
                     ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/yellow_ghost_right.png")));
                 }else if(direction.equals("left")){
@@ -58,7 +76,7 @@ public class Ghost extends Entity {
                 }else if(direction.equals("up")){
                     ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/yellow_ghost_up.png")));
                 }
-            }else if(color.equals("brown")) {
+            }else if(!is_eatable && color.equals("brown")) {
                 if(direction.equals("right")){
                     ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/brown_ghost_right.png")));
                 }else if(direction.equals("left")){
@@ -68,6 +86,8 @@ public class Ghost extends Entity {
                 }else if(direction.equals("up")){
                     ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/brown_ghost_up.png")));
                 }
+            }else if(is_eatable){
+                ghost_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/freak_ghost.png")));
             }
         }catch (IOException e){
             e.printStackTrace();
@@ -177,6 +197,7 @@ public class Ghost extends Entity {
             direction = "up";
         }
     }
+
     public void update(int player_x, int player_y){
 
         moveRandom();
