@@ -19,11 +19,9 @@ public class HomePage extends JFrame {
         ImageIcon imageIcon = new ImageIcon("src/images/home.jpg");
         JLabel imageLabel = new JLabel(imageIcon);
         
-
         // Add imageLabel to the frame
         add(imageLabel, BorderLayout.CENTER);
-
-
+        
         // Panel for buttons
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton btnLeaderboard = new JButton("Leaderboard");
@@ -64,7 +62,6 @@ public class HomePage extends JFrame {
                 if (playerName == null) {
                     System.exit(0);
                 }
-
                 gamePanel.setPlayerNameForPacman(playerName);
                 gamePanel.startGameThread();
 
