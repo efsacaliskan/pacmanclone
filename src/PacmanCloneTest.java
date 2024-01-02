@@ -159,6 +159,7 @@ public class PacmanCloneTest {
         test.testPacmanCollidesWithGhostWithBigItem();
         test.testPacmanStopsAtObstacle();
         //test.testGameEnds();
+        test.testPacmanTeleportsToOppositeSide();
     }
 
 
