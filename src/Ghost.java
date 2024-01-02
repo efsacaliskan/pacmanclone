@@ -206,7 +206,12 @@ public class Ghost extends Entity {
 
     public void update(int player_x, int player_y){
 
+        if(x == 720 && y == 336){
+            gamePanel.tileManager.startDoorTimer();
+        }
+
         moveRandom();
+
 
         /*double distance = Math.sqrt(Math.pow((x - player_x), 2) + Math.pow((y - player_y), 2));
 
