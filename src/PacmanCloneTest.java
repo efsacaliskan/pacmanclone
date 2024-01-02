@@ -96,20 +96,15 @@ public class PacmanCloneTest {
         }
         assertNull(gamePanel.gameThread, "Game ended due to collision with ghost.");
     }
-    //Test ID : T-STP-PMC-009
-    //cherry olmadığı için bu kısım yok
-    @Test
-    public void testPacmanCollidesWithGhostWithCherry() {
+     //Test ID : T-STP-PMC-009
+     @Test
+    public void testPacmanCollidesWithGhostWithBigItem() {
         GamePanel gamePanel = new GamePanel();  
-        //gamePanel.pacman.cherry(); buraya eklenicek
+        gamePanel.ghost1.startEatableTimer(); 
         gamePanel.pacman.x = gamePanel.ghost1.x; 
         gamePanel.pacman.y = gamePanel.ghost1.y;
-        //gamePanel.collisionManager.collisionWithGhost();
-
-        // Assert: Ghost should be removed and then respawned
-        //assertFalse(gamePanel.ghosts.contains(gamePanel.ghost1), "değiştirilebilir");
-        //assertEquals(gamePanel.ghost1.x, gamePanel.ghost1.initialX, "respawn of the ghost 1");
-        //assertEquals(gamePanel.ghost1.y, gamePanel.ghost1.initialY, "respawn of the gost 2");
+        gamePanel.update();
+        assertTrue(gamePanel.ghost1.is_eatable, "Ghost should be eatable after Pacman eats bigItem");
     }
     //Test ID : T-STP-PMC-010
     @Test
