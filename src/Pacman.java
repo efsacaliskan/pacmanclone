@@ -124,6 +124,11 @@ public class Pacman extends Entity {
     }
     public void update(){
 
+        System.out.println("ghost1: " + gamePanel.ghost1.x + ", " + gamePanel.ghost1.y);
+        System.out.println("ghost2: " + gamePanel.ghost2.x + ", " + gamePanel.ghost2.y);
+        System.out.println("ghost3: " + gamePanel.ghost3.x + ", " + gamePanel.ghost3.y);
+        System.out.println("ghost4: " + gamePanel.ghost4.x + ", " + gamePanel.ghost4.y);
+
         if(!gamePanel.isPaused){
             speed = 4;
         }

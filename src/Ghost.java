@@ -152,24 +152,8 @@ public class Ghost extends Entity {
         String requestDirection = directions[randomIndex];
 
         if(!atCross()){
-            if(!gamePanel.collisionManager.isOkToMove(x, y, direction)){
-                randomIndex = random.nextInt(directions.length);
-                direction = directions[randomIndex];
-            }
-            if (direction.equals("right") && gamePanel.collisionManager.isOkToMove(x, y, direction)) {
-                x += speed;
-            } else if (direction.equals("left") && gamePanel.collisionManager.isOkToMove(x, y, direction)) {
-                x -= speed;
-            }
-
-            if (direction.equals("down") && gamePanel.collisionManager.isOkToMove(x, y, direction)) {
-                y += speed;
-            } else if (direction.equals("up") && gamePanel.collisionManager.isOkToMove(x, y, direction)) {
-                y -= speed;
-            }
-        }else{
-            if(direction.equals("left") && x == 48 && y == 336){
-                String[] temp_directions = {"down", "up", "right"};
+            if(x == 48 && y == 336){
+                String[] temp_directions = {"down", "up"};
                 random = new Random();
                 randomIndex = random.nextInt(temp_directions.length);
                 requestDirection = temp_directions[randomIndex];
@@ -179,8 +163,49 @@ public class Ghost extends Entity {
                 }else if(direction.equals("up") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
                     y -= speed;
                 }
-            }else if(direction.equals("right") && x == 1440 && y == 336){
-                String[] temp_directions = {"down", "up", "left"};
+            }else if(x == 1440 && y == 336){
+                String[] temp_directions = {"down", "up"};
+                random = new Random();
+                randomIndex = random.nextInt(temp_directions.length);
+                requestDirection = temp_directions[randomIndex];
+                direction = requestDirection;
+                if(direction.equals("down") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y += speed;
+                }else if(direction.equals("up") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y -= speed;
+                }
+            }else{
+                if(!gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    randomIndex = random.nextInt(directions.length);
+                    direction = directions[randomIndex];
+                }
+                if (direction.equals("right") && gamePanel.collisionManager.isOkToMove(x, y, direction)) {
+                    x += speed;
+                } else if (direction.equals("left") && gamePanel.collisionManager.isOkToMove(x, y, direction)) {
+                    x -= speed;
+                }
+
+                if (direction.equals("down") && gamePanel.collisionManager.isOkToMove(x, y, direction)) {
+                    y += speed;
+                } else if (direction.equals("up") && gamePanel.collisionManager.isOkToMove(x, y, direction)) {
+                    y -= speed;
+                }
+            }
+
+        }else{
+            if(x == 48 && y == 336){
+                String[] temp_directions = {"down", "up"};
+                random = new Random();
+                randomIndex = random.nextInt(temp_directions.length);
+                requestDirection = temp_directions[randomIndex];
+                direction = requestDirection;
+                if(direction.equals("down") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y += speed;
+                }else if(direction.equals("up") && gamePanel.collisionManager.isOkToMove(x, y, direction)){
+                    y -= speed;
+                }
+            }else if(x == 1440 && y == 336){
+                String[] temp_directions = {"down", "up"};
                 random = new Random();
                 randomIndex = random.nextInt(temp_directions.length);
                 requestDirection = temp_directions[randomIndex];
@@ -192,7 +217,6 @@ public class Ghost extends Entity {
                 }
             }else{
                 if(!gamePanel.collisionManager.isOkToMove(x, y, requestDirection)){
-                    System.out.println(requestDirection);
                     randomIndex = random.nextInt(directions.length);
                     requestDirection = directions[randomIndex];
                 }
