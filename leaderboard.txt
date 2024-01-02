@@ -16,3 +16,4 @@ lsldld: 300
 safaspğfğ: 670
 sff: 260
 s: 270
+: 70

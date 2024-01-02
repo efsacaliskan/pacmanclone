@@ -34,20 +34,15 @@ public class Pacman extends Entity {
 
     public void getPlayerImage(){
         try {
-            /*if(Objects.equals(direction, "right")){
-                pacman_right = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_right.png")));
+            if(Objects.equals(direction, "right")){
+                pacman_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_right.png")));
             }else if(Objects.equals(direction, "left")){
-                pacman_left = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_left.png")));
+                pacman_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_left.png")));
             }else if(Objects.equals(direction, "up")){
-                pacman_up = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_up.png")));
+                pacman_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_up.png")));
             }else if(Objects.equals(direction, "down")){
-                pacman_down = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_down.png")));
-            }*/
-            pacman_right = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_right.png")));
-            pacman_left = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_left.png")));
-            pacman_up = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_up.png")));
-            pacman_down = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_down.png")));
-
+                pacman_img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/pacman_down.png")));
+            }
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -156,23 +151,16 @@ public class Pacman extends Entity {
                 System.out.println("score: " + score);
                 gamePanel.updateScoreDisplay(this.score);
             }
+            if(gamePanel.tileManager.mapTileNumber[col][row] == 3){
+                gamePanel.tileManager.mapTileNumber[col][row] = 0;
+                System.out.println("score: " + score);
+                gamePanel.updateScoreDisplay(this.score);
+            }
         }
     }
 
     public void draw(Graphics2D g2){
-        if(direction.equals("right")){
-            g2.drawImage(pacman_right, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
-        }
-        if(direction.equals("left")){
-            g2.drawImage(pacman_left, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
-        }
-        if(direction.equals("up")){
-            g2.drawImage(pacman_up, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
-        }
-        if(direction.equals("down")){
-            g2.drawImage(pacman_down, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
-        }
-
+        g2.drawImage(pacman_img, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
     }
 
     public int getScore(){

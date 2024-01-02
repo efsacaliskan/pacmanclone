@@ -66,6 +66,10 @@ public class TileManager{
             tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/coin.png")));
             tile[2].collision = true;
 
+            tile[3] = new Tile();
+            tile[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/big_coin.png")));
+            tile[3].collision = true;
+
         }catch (IOException e){
             e.printStackTrace();
         }
