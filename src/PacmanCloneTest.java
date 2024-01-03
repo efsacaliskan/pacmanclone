@@ -67,7 +67,7 @@ public class PacmanCloneTest {
         p.setDefaultPosition();
         int score = p.getScore();
         p.update();
-        assertEquals(score + 20,p.getScore() + 20,"Update is successful");
+        assertEquals(score + 30,p.getScore() + 20,"Update is successful");
         assertFalse(collisionManager.canCollectedCoin(p.x,p.y, p.direction),"The coin is removed.");
     }
 
